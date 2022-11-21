@@ -18,7 +18,7 @@
         password: "{{ docker_password }}"
     - name: pull an image
       docker_image:
-        name: chetankg/tomcat_deploy:30
+        name: nagubujji/nagu:20
         source: pull
 
     - name: remove container
@@ -29,7 +29,7 @@
     - name: create a application container
       docker_container:
         name: devopsAppDeploy
-        image: chetankg/tomcat_deploy:30
+        image: nagubujji/nagu:20
         state: started
         ports:
           - "8111:8080"
