@@ -18,7 +18,7 @@
         password: Nagaraj@3780
     - name: pull an image
       docker_image:
-        name: "nagubujji/nagu:{{BUILD_NUMBER}}"
+        name: "nagubujji/nagu1:{{BUILD_NUMBER}}"
         source: pull
 
     - name: remove container
@@ -29,7 +29,7 @@
     - name: create a application container
       docker_container:
         name: devopsAppDeploy
-        image:  "nagubujji/nagu:{{BUILD_NUMBER}}"
+        image:  "nagubujji/nagu1:{{BUILD_NUMBER}}"
         state: started
         ports:
           - "8111:8080"
