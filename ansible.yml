@@ -1,0 +1,35 @@
+---
+- hosts: webserver
+  become: yes
+  become_method: sudo
+  tasks:
+
+    - name: insatll pip3
+      shell: apt install python3-pip -y
+
+    - name: insatll pip3
+      shell: pip3 install docker
+
+
+    - name: Log into DockerHub
+      docker_login:
+        registry: docker.io
+        username: chetankg
+        password: "{{ docker_password }}"
+    - name: pull an image
+      docker_image:
+        name: chetankg/tomcat_deploy:30
+        source: pull
+
+    - name: remove container
+      docker_container:
+        name: devopsAppDeploy
+        state: absent
+
+    - name: create a application container
+      docker_container:
+        name: devopsAppDeploy
+        image: chetankg/tomcat_deploy:30
+        state: started
+        ports:
+          - "8111:8080"
