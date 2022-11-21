@@ -14,8 +14,8 @@
     - name: Log into DockerHub
       docker_login:
         registry: docker.io
-        username: chetankg
-        password: "{{ docker_password }}"
+        username: nagubujji
+        password: Nagaraj@3780
     - name: pull an image
       docker_image:
         name: "nagubujji/nagu:{{BUILD_NUMBER}}"
