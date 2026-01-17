@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example.maven-project</groupId>
@@ -13,6 +15,8 @@
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <modules>
@@ -30,12 +34,23 @@
 
   <build>
     <plugins>
+
+      <!-- Java Compiler -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
+      </plugin>
+
+      <!-- WAR packaging support -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.1</version>
       </plugin>
 
       <plugin>
@@ -49,6 +64,7 @@
         <artifactId>maven-site-plugin</artifactId>
         <configuration>
           <reportPlugins>
+
             <plugin>
               <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
@@ -74,32 +90,20 @@
               <artifactId>findbugs-maven-plugin</artifactId>
             </plugin>
 
-            <project>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.1</version> 
-      </plugin>
-    </plugins>
-  </build>
-  
-</project>
-
-
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>taglist-maven-plugin</artifactId>
             </plugin>
+
           </reportPlugins>
         </configuration>
       </plugin>
+
     </plugins>
 
     <pluginManagement>
       <plugins>
+
         <plugin>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>3.6.3</version>
@@ -107,7 +111,7 @@
 
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.11.0</version>
         </plugin>
 
         <plugin>
@@ -172,12 +176,14 @@
           <artifactId>jetty-maven-plugin</artifactId>
           <version>8.0.0.M1</version>
         </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
 
   <dependencyManagement>
     <dependencies>
+
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>servlet-api</artifactId>
@@ -217,6 +223,7 @@
         <version>1.8.5</version>
         <scope>test</scope>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
